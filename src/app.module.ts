@@ -7,7 +7,9 @@ import { CatalogModule } from './catalog/catalog.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGO_URI ?? 'mongodb://localhost:27017/syte-db',
+      process.env.MONGO_URI ??
+        // 'mongodb+srv://s0548503880:sa3880@syte.tf0xf.mongodb.net/Syte?retryWrites=true&w=majority&appName=Syte',
+        'mongodb://localhost:27017/syte-db',
     ),
     CatalogModule,
   ],

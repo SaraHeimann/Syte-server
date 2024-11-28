@@ -1,8 +1,10 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
+
+export type CatalogDocument = HydratedDocument<Catalog>;
 
 @Schema()
-export class Catalog extends Document {
+export class Catalog {
   @Prop({ required: true })
   name: string;
 
@@ -12,10 +14,10 @@ export class Catalog extends Document {
   @Prop({ default: false })
   isPrimary: boolean;
 
-  @Prop({ type: [String], default: [] })
+  @Prop({ type: [String], required: true })
   locales: string[];
 
-  @Prop({ default: Date.now })
+  @Prop({ type: Date, default: () => new Date() })
   indexedAt: Date;
 }
 
